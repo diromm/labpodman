@@ -1,0 +1,11 @@
+v1
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-8eb5106d-7524-4b08-bdaf-2df3454e1eb0-c000.json","size":17127,"isDir":false,"modificationTime":1689808610909,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-5c409086-3faa-433d-aff7-9fbd56a894a5-c000.json","size":122,"isDir":false,"modificationTime":1689808612034,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-c952623f-625c-463f-bad7-6234e576b3e2-c000.json","size":164,"isDir":false,"modificationTime":1689808623275,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-38a9e251-b994-4be1-8640-b9764f4b8f39-c000.json","size":143,"isDir":false,"modificationTime":1689808633756,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-d39f5e72-bddc-4c4b-81a5-e79bcf52ba65-c000.json","size":164,"isDir":false,"modificationTime":1689808645005,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-14975d8d-9b62-4932-a9dd-539db33fcb2b-c000.json","size":176,"isDir":false,"modificationTime":1689808655524,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-9d4dc729-d80d-4654-a96f-5fd7022d77e1-c000.json","size":150,"isDir":false,"modificationTime":1689808666203,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-d7d4c012-34d7-4aaa-b4a9-63f1c8f033b7-c000.json","size":153,"isDir":false,"modificationTime":1689808677198,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-7039e233-4e15-47cc-8eda-405196f292a8-c000.json","size":131,"isDir":false,"modificationTime":1689808688087,"blockReplication":3,"blockSize":134217728,"action":"add"}
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-8e17130d-e028-4dd3-84a8-42d60bfc9c56-c000.json","size":151,"isDir":false,"modificationTime":1689808699260,"blockReplication":3,"blockSize":134217728,"action":"add"}

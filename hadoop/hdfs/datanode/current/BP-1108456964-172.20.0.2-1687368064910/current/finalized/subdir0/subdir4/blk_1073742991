@@ -1,0 +1,2 @@
+v1
+{"path":"hdfs://namenode:8020/datalake/raw/streaming/part-00000-8eb5106d-7524-4b08-bdaf-2df3454e1eb0-c000.json","size":17127,"isDir":false,"modificationTime":1689808610909,"blockReplication":3,"blockSize":134217728,"action":"add"}
