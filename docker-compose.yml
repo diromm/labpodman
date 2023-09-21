@@ -27,7 +27,7 @@ x-airflow-common:
       condition: service_healthy
     postgres:
       condition: service_healthy
-
+    
 services:
   zookeeper:
     image: fjardim/mds-kafka-zookeeper
@@ -111,7 +111,7 @@ services:
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
-        
+      
          
   kafka-control-center:
     image: fjardim/mds-kafka-control-center
@@ -210,33 +210,21 @@ services:
         limits:
           memory: 2048m
 
-  postgres:
-    image: fjardim/mds-postgres
-    container_name: postgres
-    hostname: postgres
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: admin 
-    ports:
-      - 5442:5432
-    volumes:
-      - ./postgres/postgres-db-volume:/var/lib/postgresql/data
-      - ./postgres:/util
-          
   redis:
     image: fjardim/mds-redis
     container_name: redis
     hostname: redis
     expose:
       - 6379
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/util:/util
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 30s
       retries: 50
-    volumes:
-      - ./redis:/util
     
   airflow-webserver:
     <<: *airflow-common
@@ -396,6 +384,7 @@ services:
       <<: *airflow-common-env
       CONNECTION_CHECK_MAX_COUNT: "0"
     # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
+    
     command:
       - bash
       - -c
@@ -473,8 +462,6 @@ services:
 
   elasticsearch:
     image: fjardim/mds-elasticsearch
-    container_name: elasticsearch
-    hostname: elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -488,8 +475,6 @@ services:
       
   kibana:
     image: fjardim/mds-kibana
-    container_name: kibana
-    hostname: kibana
     ports:
       - "5601:5601"
     environment:
@@ -498,6 +483,7 @@ services:
       - elasticsearch
     volumes:
       - ./kibana/util:/util/
+
 
   trino:
     image: fjardim/mds-trino 
@@ -533,7 +519,8 @@ services:
     volumes:
        - ./hive/conf:/hive_custom_conf
        - ./hive/util:/util
-
+       
+       
   hive-metastore:
     hostname: metastore
     image: fjardim/mds-hive-metastore
@@ -556,7 +543,7 @@ services:
        - ./hive/meta:/opt/hive/data/warehouse 
        - ./hive/conf:/hive_custom_conf
        - ./hive/util:/util
-
+       
   minio:
     image: fjardim/mds-minio
     container_name: minio
@@ -602,6 +589,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    volumes: 
+      - ./pinot/util:/util
 
   pinot-controller:
     image: fjardim/mds-pinot
@@ -614,8 +603,9 @@ services:
       JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms1G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-controller.log"
     depends_on:
       - pinot-zookeeper
-    volumes:
-      - ./pinot/util:/util/
+    volumes: 
+      - ./pinot/util:/util
+    
 
   pinot-broker:
     image: fjardim/mds-pinot
@@ -628,8 +618,9 @@ services:
       JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-broker.log"
     depends_on:
       - pinot-controller
-    volumes:
-      - ./pinot/util:/util/
+    volumes: 
+      - ./pinot/util:/util
+    
 
   pinot-server:
     image: fjardim/mds-pinot
@@ -643,8 +634,9 @@ services:
     depends_on:
       - pinot-broker
       - kafka-broker
-    volumes:
-      - ./pinot/util:/util/
+    volumes: 
+      - ./pinot/util:/util
+    
 
   namenode:
     image: fjardim/mds-namenode
@@ -691,7 +683,7 @@ services:
     - "8888:8888"
     volumes:
       - ./hue/hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
-      #- ./hue/util:/util
+      - ./hue/util:/util
     depends_on:
       - "postgres"
     deploy:
@@ -730,7 +722,7 @@ services:
     container_name: cassandra
     ports:
       - 7001:7000
-   volumes:
+    volumes:
       - ./cassandra/util:/util/
 
   mysql:
@@ -743,13 +735,35 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+        - 3306:3306
     volumes:
       - ./mysql/util:/util/
-
+      
   adminer:
     hostname: adminer
-    container_name: adminer
     image: adminer
     ports:
       - 8180:8080
+
+  postgres:
+    image: fjardim/mds-postgres
+    container_name: postgres
+    hostname: postgres
+    user: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+      PGPASSWORD: admin
+      #PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5442:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgres/backup:/backup
+    
+volumes:
+    postgres:
+        driver: local
