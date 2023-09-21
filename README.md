@@ -1,4 +1,4 @@
-# BIG DATA ECOSYSTEM - MODERN DATA STACK COM DOCKER - PODMAN 
+# BIG DATA ECOSYSTEM - MODERN DATA STACK COM DOCKER/PODMAN 
 
 Ambiente para estudo dos principais framework de um ambiente moderno de dados utilizando PODMAN.
  
@@ -6,14 +6,14 @@ Ambiente para estudo dos principais framework de um ambiente moderno de dados ut
 ## SOFTWARES NECESSÁRIOS
 #### Para a criação e uso do ambiente vamos utilizar o git, PODMAN e PODMAN DESKTOP 
    * Instalação do [PODMAN Desktop](https://podman-desktop.io/) 
-   *  [Instalação do git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git 
-   * Para ambientes Windows, instalar o [WSL] (https://learn.microsoft.com/pt-br/windows/wsl/install) 
+   *  [Instalação do git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git) 
+   * Para ambientes Windows, instalar o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) 
 
 ## AVISO
    * Para executar todo o ambiente, o servidor/host deve possuir pelo menos 16GB de memória.
    * É indicado subir apenas os containers para o worload que será utilizado/testado.
 
-   * Após instalar o PODMAN Desktop, clicar em install para instalar o PODMAN.
+   * Após instalar o PODMAN Desktop, clicar em install para instalar o PODMAN. Ao finalizar a instalação do PODMAN, clicar no Compose, no canto inferior esquerdo para habilidar o docker-compose.
    ![PODMAN](image/podman.png)
 
 
