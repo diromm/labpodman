@@ -111,8 +111,7 @@ services:
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
-      CONNECT_REST_ADVERTISED_HOST_NAME: localhost
-  
+        
          
   kafka-control-center:
     image: fjardim/mds-kafka-control-center
@@ -474,6 +473,8 @@ services:
 
   elasticsearch:
     image: fjardim/mds-elasticsearch
+    container_name: elasticsearch
+    hostname: elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -487,6 +488,8 @@ services:
       
   kibana:
     image: fjardim/mds-kibana
+    container_name: kibana
+    hostname: kibana
     ports:
       - "5601:5601"
     environment:
@@ -749,16 +752,20 @@ services:
   mysql:
     image: mysql
     hostname: mysql
+    container_name: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
     volumes:
       - ./mysql/util:/util/
 
   adminer:
     hostname: adminer
+    container_name: adminer
     image: adminer
     ports:
       - 8180:8080
