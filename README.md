@@ -6,7 +6,7 @@ Ambiente para estudo dos principais framework de um ambiente moderno de dados ut
 ## SOFTWARES NECESSÁRIOS
 #### Para a criação e uso do ambiente vamos utilizar o git, PODMAN e PODMAN DESKTOP 
    * Instalação do [PODMAN Desktop](https://podman-desktop.io/) 
-   *  [Instalação do git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git) 
+   * Instalação do [git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git) 
    * Para ambientes Windows, instalar o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) 
 
 ## AVISO
