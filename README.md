@@ -1,30 +1,35 @@
-# BIG DATA ECOSYSTEM - MODERN DATA STACK COM DOCKER - LABARC
+# BIG DATA ECOSYSTEM - MODERN DATA STACK COM DOCKER - PODMAN 
 
-Ambiente para estudo dos principais framework de um ambiente moderno de dados utilizando docker.
+Ambiente para estudo dos principais framework de um ambiente moderno de dados utilizando PODMAN.
  
 
 ## SOFTWARES NECESSÁRIOS
-#### Para a criação e uso do ambiente vamos utilizar o git e o Docker 
-   * Instalação do Docker Desktop no Windows [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) ou o docker no [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-   *  [Instalação do git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git)
-   
-## SETUP
-   * OBS: A primeira vez que o ambiente for iniciado, todas as imagens serão baixadas para a maquina local. 
+#### Para a criação e uso do ambiente vamos utilizar o git, PODMAN e PODMAN DESKTOP 
+   * Instalação do [PODMAN Desktop](https://podman-desktop.io/) 
+   *  [Instalação do git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git 
+   * Para ambientes Windows, instalar o [WSL] (https://learn.microsoft.com/pt-br/windows/wsl/install) 
+
+## AVISO
    * Para executar todo o ambiente, o servidor/host deve possuir pelo menos 16GB de memória.
    * É indicado subir apenas os containers para o worload que será utilizado/testado.
+
+   * Após instalar o PODMAN Desktop, clicar em install para instalar o PODMAN.
+   ![PODMAN](image/podman.png)
 
 
 INICIANDO O AMBIENTE*
 
 #### Em um terminal/DOS/PowerShell, realizar o clone do projeto no github.
-          git clone https://github.com/fabiogjardim/labarc.git
+          git clone https://github.com/fabiogjardim/labpodman.git
 
-#### Ao realizar o clone do repositório, o diretória mds será criado em sua máquina local.
+#### Ao realizar o clone do repositório, o diretória labpodman será criado em sua máquina local.
+
+#### Executar o arquivo setup.bat (windows) ou setup.sh (linux/mac) para realizar o setup do ambiente.
 
    
 ## EXEMPLOS DE COMO INICIR O AMBIENTE
 
-  *No Windows abrir PowerShell, do Linux um terminal e acessar o diretório mds*
+  *No Windows abrir PowerShell, do Linux um terminal e acessar o diretório labpodman*
   
 ### Para iniciar um ambiente com Data Lake e Spark
 
@@ -37,22 +42,22 @@ INICIANDO O AMBIENTE*
 ## SOLUCIONANDO PROBLEMAS 
 
 ### Parar verificar os containers em execução
-         docker ps 
+         podman ps 
 
 ### Parar um containers
-         docker stop [nome do container]      
+         podman stop [nome do container]      
 
 ### Parar todos containers
-         docker stop $(docker ps -a -q)
+         podman stop $(docker ps -a -q)
   
 ### Remover um container
-         docker rm [nome do container]
+         podman rm [nome do container]
 
 ### Remover todos containers
-         docker rm $(docker ps -a -q)         
+         podman rm $(docker ps -a -q)         
 
 ### Dados do containers
-         docker container inspect [nome do container]
+         podman container inspect [nome do container]
 
 ### Iniciar um container específico
          docker-compose up -d [nome do container]
@@ -61,7 +66,7 @@ INICIANDO O AMBIENTE*
          docker-compose up -d 
 
 ### Acessar log do container
-         docker container logs [nome do container] 
+         podman logs [nome do container] 
 
 ## Acesso WebUI dos Frameworks
  
@@ -104,9 +109,9 @@ INICIANDO O AMBIENTE*
     Usuário: admin
     Senha: admin
         
-   ##### CloudBeaver
+   ##### Minio
     Usuário: admin
-    Senha: admin
+    Senha: minioadmin
    
 
 ## Imagens   
@@ -115,7 +120,6 @@ INICIANDO O AMBIENTE*
 
 ## Documentação oficial dos ambientes em container
 
-* [Cloudbeave](https://dbeaver.com/docs/cloudbeaver/Run-Docker-Container/)
 * [Trino](https://trino.io/docs/current/installation/containers.html)
 * [Superset](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
 * [Metabase](https://www.metabase.com/docs/latest/installation-and-operation/running-metabase-on-docker)

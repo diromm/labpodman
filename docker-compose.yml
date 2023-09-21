@@ -499,22 +499,6 @@ services:
     volumes:
       - ./kibana/util:/util/
 
-
-  dbeaver:
-    image: fjardim/mds-dbeaver
-    container_name: dbeaver
-    hostname: dbeaver
-    depends_on:
-      - postgres
-    #command: ./run-server.sh
-    #environment:
-    #    CB_ADMIN_NAME: cbadmin 
-    #    CB_ADMIN_PASSWORD: cbadmin123
-    ports: 
-      - "8010:8978" 
-    volumes:
-      - ./dbeaver/util:/util/
-    
   trino:
     image: fjardim/mds-trino 
     container_name: trino
@@ -707,7 +691,7 @@ services:
     - "8888:8888"
     volumes:
       - ./hue/hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
-      - ./hue/util:/util
+      #- ./hue/util:/util
     depends_on:
       - "postgres"
     deploy:
@@ -746,7 +730,7 @@ services:
     container_name: cassandra
     ports:
       - 7001:7000
-    volumes:
+   volumes:
       - ./cassandra/util:/util/
 
   mysql:
